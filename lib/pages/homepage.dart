@@ -40,7 +40,18 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 2,
         title: Text("GrayMart"),
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.shopping_cart),
+            color: Colors.teal,
+            tooltip: 'Open shopping cart',
+            onPressed: () {
+              // handle the press
+            },
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
