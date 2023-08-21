@@ -33,7 +33,10 @@ class ProductDetails extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(children: [
-            Hero(tag: product.id, child: Image.network(product.image)),
+            Hero(
+                tag: product.id,
+                child: Container(
+                    height: 450, child: Image.network(product.image))),
             Container(
               padding: EdgeInsets.all(10),
               child: Column(
