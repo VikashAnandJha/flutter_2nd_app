@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_2nd_app/models/catalog.dart';
+import 'package:flutter_2nd_app/pages/product_details.dart';
 import 'package:flutter_2nd_app/pages/widgets/drawer.dart';
 import 'package:flutter_2nd_app/pages/widgets/item.widget.dart';
 
@@ -70,39 +71,49 @@ class _HomePageState extends State<HomePage> {
                   var title = item.title.toString().length > 20
                       ? item.title.toString().substring(0, 20)
                       : item.title;
-                  return Card(
-                    child: GridTile(
-                      footer: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          children: [
-                            Text(
-                              title,
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 14,
+                  return InkWell(
+                    onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                ProductDetails(product: item))),
+                    child: Card(
+                      child: GridTile(
+                        footer: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            children: [
+                              Text(
+                                title,
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 14,
+                                ),
                               ),
-                            ),
-                            Text("\$ ${item.price}"),
-                          ],
+                              Text("\$ ${item.price} "),
+                            ],
+                          ),
                         ),
-                      ),
-                      child: Container(
-                        padding: EdgeInsets.all(0),
-                        margin: EdgeInsets.all(0),
-                        child: Column(
-                          children: [
-                            SizedBox(
-                              child: Image.network(
-                                item.image,
+                        child: Container(
+                          padding: EdgeInsets.all(0),
+                          margin: EdgeInsets.all(0),
+                          child: Column(
+                            children: [
+                              SizedBox(
+                                child: Hero(
+                                  tag: item.id,
+                                  child: Image.network(
+                                    item.image,
 
-                                height: 180,
+                                    height: 180,
 
-                                fit: BoxFit
-                                    .cover, // Adjust the image fit as needed
+                                    fit: BoxFit
+                                        .cover, // Adjust the image fit as needed
+                                  ),
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),
